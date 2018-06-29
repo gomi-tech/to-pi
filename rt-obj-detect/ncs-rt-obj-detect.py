@@ -17,7 +17,7 @@ COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
  
 # frame dimensions should be sqaure
 PREPROCESS_DIMS = (300, 300)
-DISPLAY_DIMS = (900, 900)
+DISPLAY_DIMS = (600, 600)
  
 # calculate the multiplier needed to scale the bounding boxes
 DISP_MULTIPLIER = DISPLAY_DIMS[0] // PREPROCESS_DIMS[0]
@@ -47,7 +47,7 @@ def predict(image, graph):
 	predictions = []
 
 	# loop over results
-	for box_index in range(num_valid_boxes):
+	for box_index in range(int(num_valid_boxes)):
 		# calculate the base index into our array so we can extract
 		# bounding box information
 		base_index = 7 + box_index * 7
@@ -203,7 +203,7 @@ if args["display"] > 0:
 	cv2.destroyAllWindows()
  
 # stop the video stream
-cap.stop()
+cap.release()
  
 # clean up the graph and device
 graph.DeallocateGraph()
